@@ -104,7 +104,36 @@ var fullSelectionset = numericChar.concat(
 
 //console.log(fullSelectionset);
 
-function getOthercriteria() {}
+function getOthercriteria() {
+  let remainingCriteria = [];
+  console.log("remainingCriteria @start" + remainingCriteria);
+  //ask user for special char
+  remainingCriteria[0] = window.confirm(
+    "Want to include special chars Press OK"
+  );
+  remainingCriteria[1] = window.confirm(
+    "Want to include uppercase chars Press OK"
+  );
+  remainingCriteria[2] = window.confirm(
+    "Want to include lowercase chars Press OK"
+  );
+  remainingCriteria[3] = window.confirm(
+    "Want to include numeric chars Press OK"
+  );
+
+  //validate if atleast one is selcted
+  if (
+    remainingCriteria[0] ||
+    remainingCriteria[1] ||
+    remainingCriteria[2] ||
+    remainingCriteria[3]
+  ) {
+    return remainingCriteria;
+  } else {
+    alert("Please select atleast one  choice");
+    getOthercriteria();
+  }
+}
 
 function getPasswordcriteria() {
   // ask user for password lenght
@@ -114,7 +143,7 @@ function getPasswordcriteria() {
   // Validate input lenght: check in b/w 8 -128 as well as it should be a number.
   console.log("password lenght:" + passwordLength);
   if (passwordLength == null) {
-    alert("Userdont want to quit");
+    alert("User don't want to generate password");
     return;
   } else if (
     isNaN(passwordLength) ||
@@ -124,13 +153,13 @@ function getPasswordcriteria() {
     console.log("inside incorrect  length");
     window.alert("Please provide valid password length");
     getPasswordcriteria();
+  } else {
+    //ask user for numeric char, special char ,uppercase,lowercase
+    //index 0 : special char, 1: uppercase, 2:lowercase, 3:numeric
+    let otherCriteria = [];
+    otherCriteria = getOthercriteria();
+    console.log(otherCriteria);
   }
-  // else {
-  //ask user for numeric char, special char ,uppercase,lowercase
-  //index 0 : special char, 1: uppercase, 2:lowercase, 3:numeric
-  // let otherCriteria = [];
-  // otherCriteria = getOthercriteria();
-  //}
 
   //return;
 }

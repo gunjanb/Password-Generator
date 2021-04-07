@@ -8,6 +8,102 @@ var generateBtn = document.querySelector("#generate");
 //4. Check whether user atleast selected one choice.
 //5. Generate password.
 
+//array holding numbers,lowercase,uppercase, and special chars for
+var numericChar = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var specialChar = [
+  "!",
+  '"',
+  "#",
+  "$",
+  "%",
+  "&",
+  "(",
+  ")",
+  "*",
+  "+",
+  ",",
+  "-",
+  ".",
+  "/",
+  ":",
+  ";",
+  "<",
+  "=",
+  ">",
+  "?",
+  "@",
+  "[",
+  "^",
+  "_",
+  "`",
+  "{",
+  "|",
+  "}",
+  "~",
+  "]",
+];
+var upperCasechar = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+];
+var lowerCasechar = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+];
+var fullSelectionset = numericChar.concat(
+  specialChar,
+  upperCasechar,
+  lowerCasechar
+);
+
+//console.log(fullSelectionset);
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();

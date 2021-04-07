@@ -189,6 +189,23 @@ function generatePassword() {
   }
 
   console.log("val of password char is " + userPassword);
+
+  //add lowercase char in password if user confirmed
+  if (otherCriteria[1]) {
+    let passwordChar =
+      lowerCasechar[Math.floor(Math.random() * (lowerCasechar.length - 1))];
+    userPassword.push(passwordChar);
+  }
+
+  // console.log("val of password char is " + userPassword);
+
+  // if (otherCriteria[2]) {
+  //   let passwordChar =
+  //     numericChar[Math.floor(Math.random() * (numericChar.length - 1))];
+  //   userPassword.push(passwordChar);
+  // }
+
+  console.log("val of password char is " + userPassword);
 }
 
 // Write password to the #password input

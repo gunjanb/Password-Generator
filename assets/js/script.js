@@ -208,6 +208,20 @@ function generatePassword() {
   }
 
   console.log("val of password char is " + userPassword);
+
+  var remainingLength = passwordLength - userPassword.length;
+  console.log("remainingLength is" + remainingLength);
+
+  // fill the the remaining pwd from fullSelection set
+  for (var i = 0; i < remainingLength; i++) {
+    let passwordChar =
+      fullSelectionset[
+        Math.floor(Math.random() * (fullSelectionset.length - 1))
+      ];
+    userPassword.push(passwordChar);
+  }
+
+  console.log("val of password char is " + userPassword);
 }
 
 // Write password to the #password input

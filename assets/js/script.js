@@ -197,13 +197,15 @@ function generatePassword() {
     userPassword.push(passwordChar);
   }
 
-  // console.log("val of password char is " + userPassword);
+  //add numeric char in password if user confirmed
 
-  // if (otherCriteria[2]) {
-  //   let passwordChar =
-  //     numericChar[Math.floor(Math.random() * (numericChar.length - 1))];
-  //   userPassword.push(passwordChar);
-  // }
+  console.log("val of password char is " + userPassword);
+
+  if (otherCriteria[2]) {
+    let passwordChar =
+      numericChar[Math.floor(Math.random() * (numericChar.length - 1))];
+    userPassword.push(passwordChar);
+  }
 
   console.log("val of password char is " + userPassword);
 }

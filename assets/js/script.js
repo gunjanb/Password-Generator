@@ -171,19 +171,24 @@ function getPasswordcriteria() {
 function generatePassword() {
   // get user inputs
   let userCriteria = getPasswordcriteria();
-  // add special char in password if user has confirmed
+  // add special char in password if user confirmed
   if (otherCriteria[0]) {
     let passwordChar =
       specialChar[Math.floor(Math.random() * (specialChar.length - 1))];
     userPassword.push(passwordChar);
   }
 
+  // add uppercase char in password if user confirmed
+
   console.log("val of password char is " + userPassword);
-  // if (otherCriteria[1]) {
-  //   let passwordChar =
-  //     upperCasechar[Math.floor(Math.random() * (upperCasechar.length - 1))];
-  //   userPassword.push(passwordChar);
-  // }
+
+  if (otherCriteria[1]) {
+    let passwordChar =
+      upperCasechar[Math.floor(Math.random() * (upperCasechar.length - 1))];
+    userPassword.push(passwordChar);
+  }
+
+  console.log("val of password char is " + userPassword);
 }
 
 // Write password to the #password input

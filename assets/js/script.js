@@ -104,8 +104,7 @@ var fullSelectionset = numericChar.concat(
 );
 
 var passwordLength = 0;
-// var otherCriteria = ["false", "false", "false", "false"];
-var otherCriteria = [];
+var otherCriteria = ["false", "false", "false", "false"];
 var userPassword = [];
 
 //console.log(fullSelectionset);

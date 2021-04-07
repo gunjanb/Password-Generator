@@ -104,6 +104,7 @@ var fullSelectionset = numericChar.concat(
 );
 
 var passwordLength = 0;
+// var otherCriteria = ["false", "false", "false", "false"];
 var otherCriteria = [];
 var userPassword = [];
 
@@ -220,8 +221,10 @@ function generatePassword() {
       ];
     userPassword.push(passwordChar);
   }
-
+  // convert array into string without commas
   console.log("val of password char is " + userPassword);
+  console.log("value of array as string is " + userPassword.join(""));
+  return userPassword.join("");
 }
 
 // Write password to the #password input

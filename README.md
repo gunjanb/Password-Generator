@@ -18,8 +18,8 @@ When user selected length and atleast one criteria from above a random password 
 
 ## ScreenShot
 
-![Password-Generator](./assets/images/Portfolio.png)
+![Password-Generator](./assets/images/Password-generator.png)
 
 ## Deployed Application
 
-[Password-Generator](https://gunjanb.github.io/Portfolio/)
+[Password-Generator](https://gunjanb.github.io//)

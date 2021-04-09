@@ -1,6 +1,3 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-
 //Generate Password function will generate password
 //1. Ask user the lenght of password: has to be b/w 8 -128 chars.
 //2. Validate input lenght: check in b/w 8 -128 as well as it should be a number.
@@ -103,116 +100,136 @@ var fullSelectionset = numericChar.concat(
   lowerCasechar
 );
 
+//set global variable
 var passwordLength = 0;
-var otherCriteria = ["false", "false", "false", "false"];
+var isSpecialchar = false;
+console.log("Type of isSpecialchar " + typeof isSpecialchar);
+var isNumericChar = false;
+var isUppercasechar = false;
+var isLowercasechar = false;
 var userPassword = [];
+//var otherCriteria = ["false", "false", "false", "false"];
+//console.log("type of otherCriteria" + typeof otherCriteria);
+
+// get an handle for generate button in js
+var generateBtn = document.querySelector("#generate");
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
+}
 
 //console.log(fullSelectionset);
 
+//this function will set users uppercase,lowercase,numeric and special char criterias.
 function getOthercriteria() {
-  let remainingCriteria = [];
-  console.log("remainingCriteria @start" + remainingCriteria);
-  //ask user for special char
-  remainingCriteria[0] = window.confirm(
-    "Want to include special chars Press OK"
+  // ask user for special char
+  isSpecialchar = window.confirm(
+    "Want to include special chars (ex- %^&*)? Press OK"
   );
-  remainingCriteria[1] = window.confirm(
-    "Want to include uppercase chars Press OK"
-  );
-  remainingCriteria[2] = window.confirm(
-    "Want to include lowercase chars Press OK"
-  );
-  remainingCriteria[3] = window.confirm(
-    "Want to include numeric chars Press OK"
-  );
+
+  //ask user for uppercase char
+  isUppercasechar = window.confirm("Want to include uppercase chars? Press OK");
+
+  //ask user for lowercase char
+  isLowercasechar = window.confirm("Want to include lowercase chars? Press OK");
+
+  //ask user for numeric char
+  isNumericChar = window.confirm("Want to include numeric chars Press OK");
 
   //validate if atleast one is selcted
   if (
-    remainingCriteria[0] ||
-    remainingCriteria[1] ||
-    remainingCriteria[2] ||
-    remainingCriteria[3]
+    // remainingCriteria[0] ||
+    // remainingCriteria[1] ||
+    // remainingCriteria[2] ||
+    // remainingCriteria[3]
+    isNumericChar ||
+    isSpecialchar ||
+    isUppercasechar ||
+    isLowercasechar
   ) {
-    return remainingCriteria;
+    return;
   } else {
-    alert("Please select atleast one  choice");
+    alert("Please select atleast one choice.");
     getOthercriteria();
   }
 }
 
+// this function will get password length from user and validate it.
+// when got passwordlenght will ask for other criteria by calling getothercriteria function.
+
 function getPasswordcriteria() {
   // ask user for password lenght
   passwordLength = window.prompt(
-    "Please enter required lenght of password? Valid range is  between 8 - 128"
+    "Please enter required lenght of password? Valid range is  between 8 - 128",
+    "8-128"
   );
   // Validate input lenght: check in b/w 8 -128 as well as it should be a number.
-  console.log("password lenght:" + passwordLength);
+  console.log("User entered password Lenght :" + passwordLength);
   if (passwordLength == null) {
-    alert("User don't want to generate password");
+    alert("User don't want to generate password.");
     return;
   } else if (
     isNaN(passwordLength) ||
     passwordLength < 8 ||
     passwordLength > 128
   ) {
-    console.log("inside incorrect  length");
-    window.alert("Please provide valid password length");
+    window.alert("Please provide valid password length.");
     getPasswordcriteria();
   } else {
-    //ask user for numeric char, special char ,uppercase,lowercase
-    //index 0 : special char, 1: uppercase, 2:lowercase, 3:numeric
-    otherCriteria = getOthercriteria();
-    console.log(otherCriteria);
+    //get other criterias
+    getOthercriteria();
   }
-
-  return otherCriteria;
+  return;
 }
 
+//this function sets all the user criterias and generate a password
 function generatePassword() {
   // get user inputs
-  let userCriteria = getPasswordcriteria();
-  // add special char in password if user confirmed
-  if (otherCriteria[0]) {
+  getPasswordcriteria();
+
+  if (isSpecialchar === true) {
     let passwordChar =
       specialChar[Math.floor(Math.random() * (specialChar.length - 1))];
     userPassword.push(passwordChar);
   }
 
-  // add uppercase char in password if user confirmed
+  // console.log("password is  " + userPassword);
 
-  console.log("val of password char is " + userPassword);
-
-  if (otherCriteria[1]) {
+  if (isUppercasechar === true) {
     let passwordChar =
       upperCasechar[Math.floor(Math.random() * (upperCasechar.length - 1))];
     userPassword.push(passwordChar);
   }
 
-  console.log("val of password char is " + userPassword);
+  //console.log("val of password char is " + userPassword);
 
-  //add lowercase char in password if user confirmed
-  if (otherCriteria[2]) {
+  if (isLowercasechar === true) {
     let passwordChar =
       lowerCasechar[Math.floor(Math.random() * (lowerCasechar.length - 1))];
     userPassword.push(passwordChar);
   }
 
-  //add numeric char in password if user confirmed
+  //  console.log("val of password char is " + userPassword);
 
-  console.log("val of password char is " + userPassword);
-
-  if (otherCriteria[3]) {
+  if (isNumericChar === true) {
     let passwordChar =
       numericChar[Math.floor(Math.random() * (numericChar.length - 1))];
     userPassword.push(passwordChar);
   }
 
-  console.log("val of password char is " + userPassword);
+  // console.log("val of password char is " + userPassword);
 
   var remainingLength = passwordLength - userPassword.length;
-  console.log("remainingLength is" + remainingLength);
+  console.log("Password Lenght user what selected is " + passwordLength);
+  console.log("Current Password length is " + userPassword.length);
+  console.log("Remaining length  is " + remainingLength);
 
-  // fill the the remaining pwd from fullSelection set
+  // fill the the remaining pwd lenght from fullSelection set
   for (var i = 0; i < remainingLength; i++) {
     let passwordChar =
       fullSelectionset[
@@ -221,18 +238,10 @@ function generatePassword() {
     userPassword.push(passwordChar);
   }
   // convert array into string without commas
-  console.log("val of password char is " + userPassword);
-  console.log("value of array as string is " + userPassword.join(""));
-  return userPassword.join("");
+  console.log("Value  of  current password is " + userPassword);
+  console.log("Value of password as string is " + userPassword.join(""));
+  var userGeneratedpassword = userPassword.join("");
+  //make temp array holding password to have nothing
+  userPassword = [];
+  return userGeneratedpassword;
 }
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);

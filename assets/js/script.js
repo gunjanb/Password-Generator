@@ -93,68 +93,60 @@ var lowerCasechar = [
   "y",
   "z",
 ];
-//fullSelectionset will have all the reference option for password generation.
-var fullSelectionset = numericChar.concat(
-  specialChar,
-  upperCasechar,
-  lowerCasechar
-);
 
 //set global variable
 var passwordLength = 0;
 var isSpecialchar = false;
-console.log("Type of isSpecialchar " + typeof isSpecialchar);
 var isNumericChar = false;
 var isUppercasechar = false;
 var isLowercasechar = false;
-//var userPassword = [];
-//var otherCriteria = ["false", "false", "false", "false"];
-//console.log("type of otherCriteria" + typeof otherCriteria);
 
-// get an handle for generate button in js
+// get an handle for generate button
 var generateBtn = document.querySelector("#generate");
+
 // get an handle for textarea
 var passwordText = document.querySelector("#password");
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  // var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
-
-//console.log(fullSelectionset);
 
 //this function will set users uppercase,lowercase,numeric and special char criterias.
 function getOthercriteria() {
   // ask user for special char
   isSpecialchar = window.confirm(
-    "Want to include special chars (ex- %^&*)? Press OK"
+    "Want to include special chars (ex- %^&*)? Press OK."
   );
 
   //ask user for uppercase char
-  isUppercasechar = window.confirm("Want to include uppercase chars? Press OK");
+  isUppercasechar = window.confirm(
+    "Want to include uppercase chars? Press OK."
+  );
 
   //ask user for lowercase char
-  isLowercasechar = window.confirm("Want to include lowercase chars? Press OK");
+  isLowercasechar = window.confirm(
+    "Want to include lowercase chars? Press OK."
+  );
 
   //ask user for numeric char
-  isNumericChar = window.confirm("Want to include numeric chars Press OK");
+  isNumericChar = window.confirm("Want to include numeric chars Press OK.");
 
   //validate if atleast one is selcted
   if (isNumericChar || isSpecialchar || isUppercasechar || isLowercasechar) {
     return;
   } else {
-    alert("Please select atleast one choice.");
+    alert("Please select atleast one char type.");
     getOthercriteria();
   }
 }
 
 // this function will get password length from user and validate it.
 // when got passwordlenght will ask for other criteria by calling getothercriteria function.
-
 function getPasswordcriteria() {
   // ask user for password lenght
   passwordLength = window.prompt(
@@ -162,7 +154,7 @@ function getPasswordcriteria() {
     "8-128"
   );
   // Validate input lenght: check in b/w 8 -128 as well as it should be a number.
-  console.log("User entered password Lenght :" + passwordLength);
+  //console.log("User entered password Lenght :" + passwordLength);
   if (passwordLength == null) {
     alert("User don't want to generate password.");
     return;
@@ -197,61 +189,57 @@ function generatePassword() {
   //user generated password based on selected criteria
   var userPassword = [];
 
+  //add special char if user conform
   if (isSpecialchar === true) {
     let passwordChar =
       specialChar[Math.floor(Math.random() * (specialChar.length - 1))];
     userPassword.push(passwordChar);
     selectionSet = selectionSet.concat(specialChar);
-    console.log("selectionset is " + selectionSet);
+    // console.log("selectionset is " + selectionSet);
   }
 
-  // console.log("password is  " + userPassword);
-
+  //add uppercase char if user conform
   if (isUppercasechar === true) {
     let passwordChar =
       upperCasechar[Math.floor(Math.random() * (upperCasechar.length - 1))];
     userPassword.push(passwordChar);
     selectionSet = selectionSet.concat(upperCasechar);
-    console.log("selectionset is " + selectionSet);
+    //console.log("selectionset is " + selectionSet);
   }
 
-  //console.log("val of password char is " + userPassword);
-
+  //addlowercase char if user conform
   if (isLowercasechar === true) {
     let passwordChar =
       lowerCasechar[Math.floor(Math.random() * (lowerCasechar.length - 1))];
     userPassword.push(passwordChar);
     selectionSet = selectionSet.concat(lowerCasechar);
-    console.log("selectionset is " + selectionSet);
+    //console.log("selectionset is " + selectionSet);
   }
 
-  //  console.log("val of password char is " + userPassword);
-
+  //addnumeric char if user conform
   if (isNumericChar === true) {
     let passwordChar =
       numericChar[Math.floor(Math.random() * (numericChar.length - 1))];
     userPassword.push(passwordChar);
     selectionSet = selectionSet.concat(numericChar);
-    console.log("selectionset is " + selectionSet);
+    //console.log("selectionset is " + selectionSet);
   }
 
-  // console.log("val of password char is " + userPassword);
-
+  //set no of more chars need to be added
   var remainingLength = passwordLength - userPassword.length;
-  console.log("Password Lenght user what selected is " + passwordLength);
-  console.log("Current Password length is " + userPassword.length);
-  console.log("Remaining length  is " + remainingLength);
+  // console.log("Password Lenght user what selected is " + passwordLength);
+  // console.log("Current Password length is " + userPassword.length);
+  // console.log("Remaining length  is " + remainingLength);
 
-  // fill the the remaining pwd lenght from fullSelection set
+  // fill the the remaining pwd lenght from Selection set
   for (var i = 0; i < remainingLength; i++) {
     let passwordChar =
       selectionSet[Math.floor(Math.random() * (selectionSet.length - 1))];
     userPassword.push(passwordChar);
   }
   // convert array into string without commas
-  console.log("Value  of  current password is " + userPassword);
-  console.log("Value of password as string is " + userPassword.join(""));
+  // console.log("Value  of  current password is " + userPassword);
+  // console.log("Value of password as string is " + userPassword.join(""));
   var userGeneratedpassword = userPassword.join("");
-
   return userGeneratedpassword;
 }

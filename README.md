@@ -22,4 +22,4 @@ If user has not selected any of the above criteria, user is given an alert askin
 
 ## Deployed Application
 
-[Password-Generator]()
+[Password-Generator](https://gunjanb.github.io/Password-Generator/)

@@ -107,19 +107,21 @@ console.log("Type of isSpecialchar " + typeof isSpecialchar);
 var isNumericChar = false;
 var isUppercasechar = false;
 var isLowercasechar = false;
-var userPassword = [];
+//var userPassword = [];
 //var otherCriteria = ["false", "false", "false", "false"];
 //console.log("type of otherCriteria" + typeof otherCriteria);
 
 // get an handle for generate button in js
 var generateBtn = document.querySelector("#generate");
+// get an handle for textarea
+var passwordText = document.querySelector("#password");
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  // var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
 
@@ -142,16 +144,7 @@ function getOthercriteria() {
   isNumericChar = window.confirm("Want to include numeric chars Press OK");
 
   //validate if atleast one is selcted
-  if (
-    // remainingCriteria[0] ||
-    // remainingCriteria[1] ||
-    // remainingCriteria[2] ||
-    // remainingCriteria[3]
-    isNumericChar ||
-    isSpecialchar ||
-    isUppercasechar ||
-    isLowercasechar
-  ) {
+  if (isNumericChar || isSpecialchar || isUppercasechar || isLowercasechar) {
     return;
   } else {
     alert("Please select atleast one choice.");
@@ -189,13 +182,27 @@ function getPasswordcriteria() {
 
 //this function sets all the user criterias and generate a password
 function generatePassword() {
+  //Resetting the criterias before new password generation
+
+  isSpecialchar = false;
+  isUppercasechar = false;
+  isLowercasechar = false;
+  isNumericChar = false;
   // get user inputs
   getPasswordcriteria();
+
+  //selection set based on criterias
+  var selectionSet = [];
+
+  //user generated password based on selected criteria
+  var userPassword = [];
 
   if (isSpecialchar === true) {
     let passwordChar =
       specialChar[Math.floor(Math.random() * (specialChar.length - 1))];
     userPassword.push(passwordChar);
+    selectionSet = selectionSet.concat(specialChar);
+    console.log("selectionset is " + selectionSet);
   }
 
   // console.log("password is  " + userPassword);
@@ -204,6 +211,8 @@ function generatePassword() {
     let passwordChar =
       upperCasechar[Math.floor(Math.random() * (upperCasechar.length - 1))];
     userPassword.push(passwordChar);
+    selectionSet = selectionSet.concat(upperCasechar);
+    console.log("selectionset is " + selectionSet);
   }
 
   //console.log("val of password char is " + userPassword);
@@ -212,6 +221,8 @@ function generatePassword() {
     let passwordChar =
       lowerCasechar[Math.floor(Math.random() * (lowerCasechar.length - 1))];
     userPassword.push(passwordChar);
+    selectionSet = selectionSet.concat(lowerCasechar);
+    console.log("selectionset is " + selectionSet);
   }
 
   //  console.log("val of password char is " + userPassword);
@@ -220,6 +231,8 @@ function generatePassword() {
     let passwordChar =
       numericChar[Math.floor(Math.random() * (numericChar.length - 1))];
     userPassword.push(passwordChar);
+    selectionSet = selectionSet.concat(numericChar);
+    console.log("selectionset is " + selectionSet);
   }
 
   // console.log("val of password char is " + userPassword);
@@ -232,16 +245,13 @@ function generatePassword() {
   // fill the the remaining pwd lenght from fullSelection set
   for (var i = 0; i < remainingLength; i++) {
     let passwordChar =
-      fullSelectionset[
-        Math.floor(Math.random() * (fullSelectionset.length - 1))
-      ];
+      selectionSet[Math.floor(Math.random() * (selectionSet.length - 1))];
     userPassword.push(passwordChar);
   }
   // convert array into string without commas
   console.log("Value  of  current password is " + userPassword);
   console.log("Value of password as string is " + userPassword.join(""));
   var userGeneratedpassword = userPassword.join("");
-  //make temp array holding password to have nothing
-  userPassword = [];
+
   return userGeneratedpassword;
 }

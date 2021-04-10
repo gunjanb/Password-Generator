@@ -8,7 +8,7 @@ Password-Generator application enables user to generate random passwords based o
 4. They can include lowercase characters in their password.
 5. They can include numeric characters in their password.
 
-If user has not selected any of the above criteria, user is given an alert asking to select atleast one criteria out of all and presented with all above criteria's again.When user selected length for password and atleast one criteria from above a random password is generated based on selected criteria's and displayed in the window.
+If user has not selected any of the above criteria, user is given an alert asking to select atleast one criteria out of all and presented with all above criteria's again. When user selected length for password and atleast one criteria from above a random password is generated based on selected criteria's and displayed in the window.
 
 ## Key Learning:
 
@@ -22,4 +22,4 @@ If user has not selected any of the above criteria, user is given an alert askin
 
 ## Deployed Application
 
-[Password-Generator](https://gunjanb.github.io//)
+[Password-Generator]()
